@@ -2,35 +2,92 @@ package main
 
 import(
 	"fmt"
+	"math/rand"
 )
 
 func main() {
-	// board := [3][3]string{
-	// 	[]string{" --- ", " --- ", " --- "},
-	// 	[]string{" --- ", " --- ", " --- "},
-	// 	[]string{" --- ", " --- ", " --- "},
-	// }
+
+	fmt.Println("Welcome to Tic-Tac-Toe Game :)")
+	var user1, user2 string
+	fmt.Println("##############################")
+	fmt.Println("Please enter your name: ")
+	fmt.Scan(&user1)
+	fmt.Println("##############################")
+	fmt.Println("Please enter your name: ")
+	fmt.Scan(&user2)
+	fmt.Println("##############################")
+
+	r := rand.Intn(2)
+	var player1, player2 string
+	if r == 0{
+		player1 = user1
+		player2 = user2
+		fmt.Printf("The starter of the game is the %s\n", user1)
+	}else {
+		player1 = user2
+		player2 = user1
+		fmt.Println("The starter of the game is the %s\n", user2)
+	}
+
 
 
 	board := [][]string{
-	{" O ", " - ", " X "},
-	{" - ", " X ", " - "},
-	{" X ", " - ", " - "}}
-	
+	{" - ", " - ", " - "},
+	{" - ", " - ", " - "},
+	{" - ", " - ", " - "}}
 
 
-	printBoard(board)
-	fmt.Println(winLose(board))
+
+
+	i := 0
+	for {
+		printBoard(board)
+		i++
+		setVal(board, i, player1, player2)
+		status := winLose(board)
+		if status == "X"{
+			fmt.Println("##################################")
+			fmt.Printf("the %s Win the Game :)\n", player1)
+			printBoard(board)
+			break
+		}else if status == "O"{
+			fmt.Printf("the %s Win the Game :)\n", player2)
+			printBoard(board)
+			break
+		}
+
+	}
 
 
 
 }
-
+var a, b int
+func setVal(board [][]string, i int, pl1 string, pl2 string){
+	if i % 2 == 1{
+		fmt.Printf("it is your turn %s\n", pl1)
+	}else{
+		fmt.Printf("it is your turn %s\n", pl2)
+	}
+	fmt.Println("Please enter the X and Y: ")
+	fmt.Scanf("%d %d", &a, &b)
+	a -= 1
+	b -= 1
+	if i % 2 == 1{
+		board[a][b] = " X "
+	}else{
+		board[a][b] = " O "
+	}
+}
 
 func printBoard(b [][]string){
+	fmt.Println("******************************")
+	fmt.Println("-----the board-----")
+	fmt.Println("    1   2   3")
 	for i := 0 ; i < len(b); i++{
+		fmt.Printf("%d:", i + 1)
 		fmt.Println(b[i])
 	}
+	fmt.Println("******************************")
 }
 
 
