@@ -90,14 +90,17 @@ func setVal(board [][]string, i int, pl1 string, pl2 string){
 	}else{
 		fmt.Printf("it is your turn %s\n", pl2)
 	}
-	
 	for{
 		fmt.Println("Please enter the X and Y: ")
 		fmt.Scanf("%d %d", &a, &b)
-		if a >= 1 && b >= 1 && a <= 3 && b <= 3 {
+		if board[a - 1][b - 1] != " - "{
+			fmt.Println("PLEASE CHOOSE A EMPTY HOUSE")
+		}else if a >= 1 && b >= 1 && a <= 3 && b <= 3 {
+			fmt.Println("###########")
 			break
+		}else{
+			fmt.Println("PLEASE ENTER THE RANGE OF GAME:")
 		}
-		fmt.Println("PLEASE ENTER THE RANGE OF GAME:")
 	}
 	a -= 1
 	b -= 1
@@ -208,3 +211,5 @@ func winLose(b [][]string)string{
 	// return nothing
 	return "N"
 }
+
+

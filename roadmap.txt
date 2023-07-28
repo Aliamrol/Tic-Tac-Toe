@@ -1,0 +1,2 @@
+can not enter the number of full house
+if user enter the character for number
